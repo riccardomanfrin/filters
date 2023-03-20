@@ -251,14 +251,14 @@ defmodule Filters do
   @spec filter(filters_data(), Filters.t()) :: filters_data()
   def filter(data, %Filters{logic: logic, filters: filters}) do
     Enum.reduce(data, [], fn item, acc ->
-      {match, nomatch} =
+      {inneracc, match, nomatch} =
         case logic do
-          :and -> {{:cont, [item]}, {:halt, []}}
-          :or -> {{:halt, [item]}, {:cont, []}}
+          :and -> {[item], {:cont, [item]}, {:halt, []}}
+          :or -> {[], {:halt, [item]}, {:cont, []}}
         end
 
       [
-        Enum.reduce_while(filters, nil, fn filter, _inneracc ->
+        Enum.reduce_while(filters, inneracc, fn filter, _ ->
           case Filter.match(item, filter) do
             true -> match
             false -> nomatch
