@@ -322,7 +322,7 @@ defmodule Filters do
       |> String.split("&")
       |> Enum.map(&String.split(&1, "="))
 
-    [[_, logic]] = logicfilter = Enum.filter(filters, fn [k, tv] -> logic_key == k end)
+    [[_, logic]] = logicfilter = Enum.filter(filters, fn [k, _tv] -> logic_key == k end)
     filters = filters -- logicfilter
 
     logic =
