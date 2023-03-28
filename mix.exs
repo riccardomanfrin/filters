@@ -6,6 +6,7 @@ defmodule Filters.MixProject do
       app: :filters,
       version: "0.1.1",
       elixir: "~> 1.13",
+      elixirc_options: [warnings_as_errors: true],
       description: description(),
       package: package(),
       start_permanent: Mix.env() == :prod,
