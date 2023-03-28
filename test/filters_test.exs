@@ -15,7 +15,7 @@ defmodule FiltersTest do
         |> Filters.add_update(f2)
         |> Filters.add_update(f3)
 
-      assert filters = %Filters{
+      assert filters == %Filters{
                filters: [
                  %Filters.Filter{filter_type: :enum, key: :off, value: "guard"},
                  %Filters.Filter{filter_type: :enum, key: :on, value: "time"},
